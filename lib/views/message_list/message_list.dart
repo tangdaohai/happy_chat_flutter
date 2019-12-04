@@ -20,7 +20,9 @@ class MessageListState extends State<MessageList> {
       actionPane: SlidableDrawerActionPane(),
       actionExtentRatio: 0.25,
       child: ListTile(
-        onTap: () => {},
+        onTap: () {
+          Navigator.pushNamed(context, '/conversation');
+        },
         enabled: true,
         // leading: Image(image: AssetImage('images/126244.jpg'),),
         leading: CircleAvatar(
@@ -28,8 +30,7 @@ class MessageListState extends State<MessageList> {
           backgroundImage: AssetImage('images/126244.jpg'),
         ),
         title: Text('养猫的人' + index.toString()),
-        subtitle: Text('早上好'),
-        
+        subtitle: Text('早上好'),      
         trailing: Container(
           // padding: const EdgeInsets.symmetric(vertical: 2),
           child: Column(

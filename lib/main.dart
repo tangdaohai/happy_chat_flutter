@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'views/user_verify/sign_in.dart';
 import 'views/user_verify/sign_up.dart';
 import 'views/message_list/message_list.dart';
+import 'views/conversation/conversation.dart';
 
 void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/sign_in': (BuildContext context) => SignIn(),
         '/sign_up': (BuildContext context) => SignUp(),
-        '/message_list': (BuildContext context) => MessageList()
+        '/message_list': (BuildContext context) => MessageList(),
+        '/conversation': (BuildContext contextt) => Conversation()
       },
     );
   }
