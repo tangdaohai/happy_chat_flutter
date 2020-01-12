@@ -2,6 +2,7 @@
  * 登录页面
  */
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import './welcome.dart';
 
@@ -11,17 +12,18 @@ class SignIn extends StatefulWidget {
 }
 
 class SignInState extends State<SignIn> {
+  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final _formKey = GlobalKey<FormState>();
     var username;
     var password;
+    ScreenUtil.init(context, width: 375, height: 812, allowFontScaling: true);
     return Scaffold(
       // 防止键盘弹出的时候 挤压元素发生位移
       resizeToAvoidBottomInset: false,
       body: Container(
-        margin: const EdgeInsets.all(20.0),
+        margin: EdgeInsets.all(ScreenUtil().setWidth(20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -34,7 +36,10 @@ class SignInState extends State<SignIn> {
                     key: _formKey,
                     child: Column(children: <Widget>[
                       Container(
-                        margin: const EdgeInsets.only(top: 20),
+                        constraints: BoxConstraints(
+                          maxHeight: ScreenUtil().setHeight(75)
+                        ),
+                        margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
                         child: TextFormField(
                           onSaved: (val) => username = val,
                           validator: (value) {
@@ -47,7 +52,10 @@ class SignInState extends State<SignIn> {
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.symmetric(vertical: 25.0),
+                        constraints: BoxConstraints(
+                          maxHeight: ScreenUtil().setHeight(75)
+                        ),
+                        margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(25)),
                         child: TextFormField(
                           onSaved: (val) => password = val,
                           showCursor: true,
@@ -67,12 +75,15 @@ class SignInState extends State<SignIn> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      FlatButton(
-                        child: Text(
-                          'Forget Password?',
-                          style: theme.textTheme.button.copyWith(color: theme.textTheme.button.color.withOpacity(0.6)),
-                        ),
-                        onPressed: () {}
+                      Container(
+                        constraints: BoxConstraints(maxHeight: ScreenUtil().setHeight(36)),
+                        child: FlatButton(
+                          child: Text(
+                            'Forget Password?',
+                            style: theme.textTheme.button.copyWith(color: theme.textTheme.button.color.withOpacity(0.6)),
+                          ),
+                          onPressed: () {}
+                        )
                       )
                     ],
                   ),
@@ -80,9 +91,9 @@ class SignInState extends State<SignIn> {
                     children: <Widget>[
                       Expanded(
                         child: Container(
-                          margin: const EdgeInsets.symmetric(vertical: 20.0),
+                          margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(20)),
                           child: RaisedButton(
-                            padding: new EdgeInsets.symmetric(vertical: 22.0),
+                            padding: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(22)),
                             onPressed: () {
                               Navigator.pushNamed(context, '/message_list');
                               // if (_formKey.currentState.validate()) {
@@ -94,7 +105,7 @@ class SignInState extends State<SignIn> {
                               //   print('校验失败');
                               // }
                             },
-                            child: Text('SIGN IN', style: theme.primaryTextTheme.title),
+                            child: Text('SIGN IN', style: theme.primaryTextTheme.title.copyWith(fontSize: ScreenUtil().setSp(theme.primaryTextTheme.title.fontSize))),
                             // textTheme: 
                           )
                         )
@@ -107,7 +118,7 @@ class SignInState extends State<SignIn> {
                         'new user?',
                       ),
                       Container(
-                        margin: const EdgeInsets.only(left: 10.0),
+                        margin: EdgeInsets.only(left: ScreenUtil().setWidth(10)),
                         child: FlatButton (
                           onPressed: () => Navigator.pushNamed(context, '/sign_up'),
                           child: Text('SIGN UP', style: TextStyle(color: theme.primaryColor),),

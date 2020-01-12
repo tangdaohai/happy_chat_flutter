@@ -3,10 +3,12 @@
  */
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Welcome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: 375, height: 812);
     final ThemeData theme = Theme.of(context);
     return Expanded(
       flex: 2,
@@ -14,17 +16,17 @@ class Welcome extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SvgPicture.asset('images/flutter-icon.svg', width: 210.0, height: 60.0,),
+          SvgPicture.asset('images/flutter-icon.svg', width: ScreenUtil().setWidth(210), height: ScreenUtil().setHeight(60),),
           Container(
-            margin: const EdgeInsets.only(top: 40.0, bottom: 20.0),
+            margin: EdgeInsets.only(top: ScreenUtil().setHeight(40), bottom: ScreenUtil().setHeight(20)),
             child: Text(
               'Welcome',
               textAlign: TextAlign.right,
-              style: theme.textTheme.display1,
+              style: theme.textTheme.display1.copyWith(fontSize: ScreenUtil().setSp(theme.textTheme.display1.fontSize)),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(bottom: 40.0),
+            margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(40)),
             child: Text(
               'Code changes the world.',
               style: theme.textTheme.body1.copyWith(color: theme.textTheme.body1.color.withOpacity(0.6))
