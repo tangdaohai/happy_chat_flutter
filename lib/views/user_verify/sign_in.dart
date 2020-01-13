@@ -18,7 +18,6 @@ class SignInState extends State<SignIn> {
     final ThemeData theme = Theme.of(context);
     var username;
     var password;
-    ScreenUtil.init(context, width: 375, height: 812, allowFontScaling: true);
     return Scaffold(
       // 防止键盘弹出的时候 挤压元素发生位移
       resizeToAvoidBottomInset: false,

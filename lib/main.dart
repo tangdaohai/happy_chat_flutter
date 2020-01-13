@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import './index.dart';
 import 'views/user_verify/sign_in.dart';
 import 'views/user_verify/sign_up.dart';
 import 'views/message_list/message_list.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Color(0xFF6200EE),
         buttonColor: Color(0xFF6200EE)
       ),
-      home: SignIn(),
+      home: Index(),
       routes: <String, WidgetBuilder>{
         '/sign_in': (BuildContext context) => SignIn(),
         '/sign_up': (BuildContext context) => SignUp(),
