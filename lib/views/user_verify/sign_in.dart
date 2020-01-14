@@ -12,7 +12,7 @@ class SignIn extends StatefulWidget {
 }
 
 class SignInState extends State<SignIn> {
-  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);

@@ -11,10 +11,10 @@ class SignUp extends StatefulWidget {
 }
 
 class SignInState extends State<SignUp> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final _formKey = GlobalKey<FormState>();
     var username;
     var password;
     return Scaffold(
