@@ -2,6 +2,7 @@
  * 注册页面
  */
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import './welcome.dart';
 
@@ -21,7 +22,7 @@ class SignInState extends State<SignUp> {
       // 防止键盘弹出的时候 挤压元素发生位移
       resizeToAvoidBottomInset: false,
       body: Container(
-        margin: const EdgeInsets.all(20.0),
+        margin: EdgeInsets.all(ScreenUtil().setWidth(20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -34,7 +35,10 @@ class SignInState extends State<SignUp> {
                     key: _formKey,
                     child: Column(children: <Widget>[
                       Container(
-                        margin: const EdgeInsets.only(top: 20),
+                        constraints: BoxConstraints(
+                          maxHeight: ScreenUtil().setHeight(75)
+                        ),
+                        margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
                         child: TextFormField(
                           onSaved: (val) => username = val,
                           validator: (value) {
@@ -47,7 +51,10 @@ class SignInState extends State<SignUp> {
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.symmetric(vertical: 25.0),
+                        constraints: BoxConstraints(
+                          maxHeight: ScreenUtil().setHeight(75)
+                        ),
+                        margin: EdgeInsets.symmetric(vertical: ScreenUtil().setWidth(25)),
                         child: TextFormField(
                           onSaved: (val) => password = val,
                           showCursor: true,
@@ -68,9 +75,9 @@ class SignInState extends State<SignUp> {
                     children: <Widget>[
                       Expanded(
                         child: Container(
-                          margin: const EdgeInsets.only(top: 56, bottom: 20),
+                          margin: EdgeInsets.only(top: ScreenUtil().setHeight(56), bottom: ScreenUtil().setHeight(20)),
                           child: RaisedButton(
-                            padding: new EdgeInsets.symmetric(vertical: 22.0),
+                            padding: EdgeInsets.symmetric(vertical: ScreenUtil().setWidth(22)),
                             onPressed: () {
                               if (_formKey.currentState.validate()) {
                                 print('校验成功');
@@ -91,7 +98,7 @@ class SignInState extends State<SignUp> {
                   Row(
                     children: <Widget>[
                       Container(
-                        margin: const EdgeInsets.only(left: 10.0),
+                        margin: EdgeInsets.only(left: ScreenUtil().setWidth(10)),
                         child: FlatButton (
                           onPressed: () => Navigator.pushNamed(context, '/sign_in'),
                           child: Text('SIGN IN', style: TextStyle(color: theme.primaryColor),),
