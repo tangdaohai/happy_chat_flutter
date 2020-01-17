@@ -127,7 +127,7 @@ class MessageListState extends State<MessageList> {
                 },
                 separatorBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.only(left: 65),
+                    padding: EdgeInsets.only(left: 65),
                     child: Divider(height: 1,),
                   );
                 },
