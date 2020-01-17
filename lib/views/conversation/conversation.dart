@@ -29,6 +29,43 @@ class _ConversationState extends State<Conversation> {
     _sendMsgTextFieldNode.removeListener(_changeKeyBoardStatus);
   }
 
+  Widget _msg (BuildContext context, int index) {
+    return Row(
+      children: <Widget>[
+        CircleAvatar(
+          radius: 20,
+          backgroundImage: AssetImage('images/126244.jpg'),
+        ),
+        Container(
+          constraints: BoxConstraints(
+            minHeight: 40
+          ),
+          margin: EdgeInsets.only(left: 10),
+          decoration: new BoxDecoration(
+            color: Colors.white,
+            border: Border.all(width: 1, color: Colors.black12)
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Center(child: Text('$index 你好，喜欢养猫吗? 便宜出售了…'),)
+        )
+        // Card(
+        //     elevation: 0,
+        //     color: Colors.transparent,
+        //     borderOnForeground: true,
+        //     child: Container(
+        //       constraints: BoxConstraints(
+        //         minHeight: 36
+        //         // maxWidth: 
+        //       ),
+        //       padding: EdgeInsets.symmetric(horizontal: 10),
+        //       child: Center(child: Text('你好，喜欢养猫吗? 便宜出售了…'),)
+        //     ),
+        //   ),
+        
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -55,7 +92,18 @@ class _ConversationState extends State<Conversation> {
         child: Column(
           children: <Widget>[ 
             Expanded(
-              child: Text(_iskeyBoardShow ? '键盘展示' : '键盘隐藏了'),
+              child: ListView.separated(
+                padding: EdgeInsets.all(10),
+                itemCount: 20,
+                itemBuilder: (context, index) {
+                  return _msg(context, index);
+                },
+                separatorBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.only(bottom: 20),
+                  );
+                }
+              ),
             ),
             // 底部操作区域
             Card(
