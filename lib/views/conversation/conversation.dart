@@ -5,9 +5,16 @@ class Conversation extends StatefulWidget {
 }
 
 class _ConversationState extends State<Conversation> {
+  // 消息免打扰
+  bool _noDisturb = false;
   // 记录发送输入框的键盘弹出状态 true 表示弹出
   bool _iskeyBoardShow = false;
   FocusNode _sendMsgTextFieldNode = new FocusNode();
+
+  // 置顶
+  void _setTopChanged (bool val) {
+
+  }
   // 修改键盘弹出状态
   void _changeKeyBoardStatus () {
     setState(() {
@@ -56,7 +63,6 @@ class _ConversationState extends State<Conversation> {
 
   @override
   Widget build(BuildContext context) {
-
     // 获取全面屏下方的距离，如果是非全面屏 bottomSize = 0
     final double bottomSize = MediaQuery.of(context).padding.bottom;
 
@@ -66,9 +72,73 @@ class _ConversationState extends State<Conversation> {
       appBar: AppBar(
         title: Text('养猫的人'),
         actions: <Widget>[
-          IconButton(
+          // IconButton(
+          //   icon: Icon(Icons.more_vert),
+          //   onPressed: () => {},
+          // )
+          PopupMenuButton(
             icon: Icon(Icons.more_vert),
-            onPressed: () => {},
+            offset: Offset(0, 60),
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+              const PopupMenuItem<String>(
+                value: 'user_detail',
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 20,
+                    backgroundImage: AssetImage('images/126244.jpg'),
+                  ),
+                  title: Text('养猫的人')
+                ),
+              ),
+              PopupMenuDivider(height: 1,),
+              PopupMenuItem<String>(
+                value: 'search_history',
+                child: ListTile(
+                  title: Text('查找聊天记录'),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                ),
+              ),
+              PopupMenuDivider(height: 1,),
+              PopupMenuItem<String>(
+                child: SwitchListTile(
+                  title: Text('消息免打扰'),
+                  value: _noDisturb,
+                  onChanged: (bool newValue) {
+                    setState(() {
+                      _noDisturb = newValue;
+                    });
+                  },
+                ),
+              ),
+              PopupMenuDivider(height: 1,),
+              PopupMenuItem<String>(
+                child: SwitchListTile(
+                  title: Text('置顶'),
+                  value: _noDisturb,
+                  onChanged: (bool newValue) {
+                    print(newValue);
+                    setState(() {
+                      _noDisturb = newValue;
+                    });
+                  },
+                ),
+              ),
+              PopupMenuDivider(height: 1,),
+              PopupMenuItem<String>(
+                value: 'search_history',
+                child: ListTile(
+                  title: Text('设置当前的聊天背景'),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                ),
+              ),
+              PopupMenuDivider(height: 1,),
+              PopupMenuItem<String>(
+                value: 'search_history',
+                child: ListTile(
+                  title: Text('清空聊天记录'),
+                ),
+              ),
+            ],
           )
         ],
       ),
