@@ -31,6 +31,7 @@ class _ConversationState extends State<Conversation> {
 
   Widget _msg (BuildContext context, int index) {
     return Row(
+      textDirection: index % 2 == 0 ? TextDirection.rtl : TextDirection.ltr,
       children: <Widget>[
         CircleAvatar(
           radius: 20,
@@ -40,28 +41,15 @@ class _ConversationState extends State<Conversation> {
           constraints: BoxConstraints(
             minHeight: 40
           ),
-          margin: EdgeInsets.only(left: 10),
+          margin: EdgeInsets.symmetric(horizontal: 10),
           decoration: new BoxDecoration(
             color: Colors.white,
+            borderRadius: BorderRadius.circular(5.0),
             border: Border.all(width: 1, color: Colors.black12)
           ),
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Center(child: Text('$index 你好，喜欢养猫吗? 便宜出售了…'),)
         )
-        // Card(
-        //     elevation: 0,
-        //     color: Colors.transparent,
-        //     borderOnForeground: true,
-        //     child: Container(
-        //       constraints: BoxConstraints(
-        //         minHeight: 36
-        //         // maxWidth: 
-        //       ),
-        //       padding: EdgeInsets.symmetric(horizontal: 10),
-        //       child: Center(child: Text('你好，喜欢养猫吗? 便宜出售了…'),)
-        //     ),
-        //   ),
-        
       ],
     );
   }
