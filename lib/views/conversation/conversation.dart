@@ -9,7 +9,10 @@ class _ConversationState extends State<Conversation> {
   bool _noDisturb = false;
   // 记录发送输入框的键盘弹出状态 true 表示弹出
   bool _iskeyBoardShow = false;
+  // 发送信息的输入框
   FocusNode _sendMsgTextFieldNode = new FocusNode();
+  // 消息列表的滚动条
+  ScrollController _scrollController = new ScrollController();
 
   // 置顶
   void _setTopChanged (bool val) {
@@ -34,6 +37,7 @@ class _ConversationState extends State<Conversation> {
     super.deactivate();
     // 解绑·监听
     _sendMsgTextFieldNode.removeListener(_changeKeyBoardStatus);
+    _scrollController.dispose();
   }
 
   Widget _msg (BuildContext context, int index) {
@@ -150,18 +154,23 @@ class _ConversationState extends State<Conversation> {
         child: Column(
           children: <Widget>[ 
             Expanded(
-              child: ListView.separated(
-                padding: EdgeInsets.all(10),
-                itemCount: 20,
-                itemBuilder: (context, index) {
-                  return _msg(context, index);
-                },
-                separatorBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.only(bottom: 20),
-                  );
-                }
-              ),
+              child: Container(
+                child: ListView.separated(
+                  // 反转，第一条在最下面
+                  reverse: true,
+                  controller: _scrollController,
+                  padding: EdgeInsets.all(10),
+                  itemCount: 20,
+                  itemBuilder: (context, index) {
+                    return _msg(context, index);
+                  },
+                  separatorBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                    );
+                  }
+                ),
+              )
             ),
             // 底部操作区域
             Card(
