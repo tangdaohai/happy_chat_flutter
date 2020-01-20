@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Conversation extends StatefulWidget {
   @override
   _ConversationState createState() => _ConversationState();
@@ -41,25 +42,32 @@ class _ConversationState extends State<Conversation> {
   }
 
   Widget _msg (BuildContext context, int index) {
+    String text = index % 2 == 0 ? '哦' : '你好，喜欢养猫吗? 便宜出售了…你好，喜欢养猫吗? 便宜出售了…你好，喜欢养猫吗? 便宜出售了…';
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       textDirection: index % 2 == 0 ? TextDirection.rtl : TextDirection.ltr,
       children: <Widget>[
         CircleAvatar(
           radius: 20,
           backgroundImage: AssetImage('images/126244.jpg'),
         ),
-        Container(
-          constraints: BoxConstraints(
-            minHeight: 40
+        Expanded(
+          flex: 0,
+          child: Container(
+            constraints: BoxConstraints(
+              maxWidth: ScreenUtil().setWidth(220),
+              minHeight: 40
+            ),
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            decoration: new BoxDecoration(
+              color: index % 2 == 0 ? Colors.deepPurpleAccent : Colors.white,
+              borderRadius: BorderRadius.circular(5.0),
+              border: Border.all(width: 1, color: Colors.black12)
+            ),
+            padding: EdgeInsets.all(10),
+            child: Text('$index $text')
+            // child: Center(child: Text('$index $text'),)
           ),
-          margin: EdgeInsets.symmetric(horizontal: 10),
-          decoration: new BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(5.0),
-            border: Border.all(width: 1, color: Colors.black12)
-          ),
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Center(child: Text('$index 你好，喜欢养猫吗? 便宜出售了…'),)
         )
       ],
     );
