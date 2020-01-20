@@ -33,10 +33,10 @@ class _ConversationState extends State<Conversation> {
   }
 
   @override
-  void deactivate() {
-    super.deactivate();
-    // 解绑·监听
-    _sendMsgTextFieldNode.removeListener(_changeKeyBoardStatus);
+  void dispose() {
+    super.dispose();
+    // 释放内存
+    _sendMsgTextFieldNode.dispose();
     _scrollController.dispose();
   }
 
