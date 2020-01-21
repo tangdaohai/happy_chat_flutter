@@ -57,12 +57,12 @@ class _ConversationState extends State<Conversation> {
           padding: EdgeInsets.only(top: 10, left: isSelf ? 0 : 10, right: isSelf ? 10 : 0),
           child: CustomPaint(
             painter: TrianglePainter(
-              color: isSelf ? Colors.deepPurpleAccent : Colors.black12,
+              color: isSelf ? Colors.deepPurpleAccent : Colors.white,
               direction: isSelf ? TriangleDirection.right : TriangleDirection.left,
             ),
             child: Container(
-              width: 8,
-              height: 8,
+              width: 5,
+              height: 10,
             ),
           ),
         ),
@@ -76,11 +76,9 @@ class _ConversationState extends State<Conversation> {
             decoration: new BoxDecoration(
               color: isSelf ? Colors.deepPurpleAccent : Colors.white,
               borderRadius: BorderRadius.circular(5.0),
-              border: Border.all(width: 1, color: Colors.black12)
             ),
             padding: EdgeInsets.all(10),
             child: Text('$index $text')
-            // child: Center(child: Text('$index $text'),)
           ),
         )
       ],
