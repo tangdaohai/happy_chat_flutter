@@ -7,6 +7,7 @@ enum TriangleDirection {
 
 class TrianglePainter extends CustomPainter {
   final Color color;
+  final Color strokeColor;
   final PaintingStyle paintingStyle;
   final double strokeWidth;
   final TriangleDirection direction;
@@ -14,7 +15,8 @@ class TrianglePainter extends CustomPainter {
   TrianglePainter(
     {
       this.color = Colors.black,
-      this.strokeWidth = 0,
+      this.strokeColor = Colors.transparent,
+      this.strokeWidth = 1,
       this.paintingStyle = PaintingStyle.fill,
       this.direction = TriangleDirection.right
     }
@@ -22,16 +24,25 @@ class TrianglePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    // 绘制 fill 三角形
     Paint paint = Paint()
       ..color = color
       ..strokeWidth = strokeWidth
       ..style = paintingStyle;
-
     canvas.drawPath(getTrianglePath(size.width, size.height), paint);
+
+    // 绘制 stroke 进行覆盖
+    if (strokeColor != Colors.transparent && strokeWidth > 0) {
+      Paint strokePaint = Paint()
+        ..color = strokeColor
+        ..strokeWidth = strokeWidth
+        ..style = PaintingStyle.stroke;
+      canvas.drawPath(getTrianglePath(size.width, size.height), strokePaint);
+    }
   }
 
   Path getTrianglePath(double x, double y) {
-    switch (this.direction) {
+    switch (direction) {
       case TriangleDirection.left:
         return Path()
           ..moveTo(x, 0)
@@ -51,6 +62,7 @@ class TrianglePainter extends CustomPainter {
   @override
   bool shouldRepaint(TrianglePainter oldDelegate) {
     return oldDelegate.color != color ||
+        oldDelegate.strokeColor != strokeColor ||
         oldDelegate.paintingStyle != paintingStyle ||
         oldDelegate.strokeWidth != strokeWidth;
   }
