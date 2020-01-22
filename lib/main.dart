@@ -5,6 +5,7 @@ import 'views/user_verify/sign_in.dart';
 import 'views/user_verify/sign_up.dart';
 import 'views/message_list/message_list.dart';
 import 'views/conversation/conversation.dart';
+import 'views/users/detail.dart';
 
 void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
         '/sign_in': (BuildContext context) => SignIn(),
         '/sign_up': (BuildContext context) => SignUp(),
         '/message_list': (BuildContext context) => MessageList(),
-        '/conversation': (BuildContext contextt) => Conversation()
+        '/conversation': (BuildContext contextt) => Conversation(),
+        '/user_detail': (BuildContext contextt) => UserDetail()
       },
     );
   }

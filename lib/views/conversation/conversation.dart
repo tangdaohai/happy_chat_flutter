@@ -104,14 +104,15 @@ class _ConversationState extends State<Conversation> {
             icon: Icon(Icons.more_vert),
             offset: Offset(0, 60),
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-              const PopupMenuItem<String>(
+              PopupMenuItem<String>(
                 value: 'user_detail',
                 child: ListTile(
                   leading: CircleAvatar(
                     radius: 20,
                     backgroundImage: AssetImage('images/126244.jpg'),
                   ),
-                  title: Text('养猫的人')
+                  title: Text('养猫的人'),
+                  onTap: () => Navigator.pushNamed(context, '/user_detail')
                 ),
               ),
               PopupMenuDivider(height: 1,),
