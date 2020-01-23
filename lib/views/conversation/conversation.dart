@@ -49,9 +49,12 @@ class _ConversationState extends State<Conversation> {
       crossAxisAlignment: CrossAxisAlignment.start,
       textDirection: isSelf ? TextDirection.rtl : TextDirection.ltr,
       children: <Widget>[
-        CircleAvatar(
-          radius: 20,
-          backgroundImage: AssetImage('images/126244.jpg'),
+        GestureDetector(
+          onTap: () => Navigator.pushNamed(context, '/user_detail'),
+          child: CircleAvatar(
+            radius: 20,
+            backgroundImage: AssetImage('images/126244.jpg'),
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(top: 10, left: isSelf ? 0 : 10, right: isSelf ? 10 : 0),
@@ -96,23 +99,27 @@ class _ConversationState extends State<Conversation> {
       appBar: AppBar(
         title: Text('养猫的人'),
         actions: <Widget>[
-          // IconButton(
-          //   icon: Icon(Icons.more_vert),
-          //   onPressed: () => {},
-          // )
           PopupMenuButton(
             icon: Icon(Icons.more_vert),
             offset: Offset(0, 60),
+            onSelected: (value) {
+              switch (value) {
+                case '/user_detail':
+                  print('跳转用户详情');
+                  Navigator.pushNamed(context, value);
+                  break;
+                default:
+              }
+            },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
               PopupMenuItem<String>(
-                value: 'user_detail',
+                value: '/user_detail',
                 child: ListTile(
                   leading: CircleAvatar(
                     radius: 20,
                     backgroundImage: AssetImage('images/126244.jpg'),
                   ),
-                  title: Text('养猫的人'),
-                  onTap: () => Navigator.pushNamed(context, '/user_detail')
+                  title: Text('养猫的人')
                 ),
               ),
               PopupMenuDivider(height: 1,),
