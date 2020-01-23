@@ -11,25 +11,70 @@ class _State extends State<UserDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
+      body: Stack(
+        // overflow: Overflow.visible,
+        fit: StackFit.expand,
         children: <Widget>[
-          Image(
-            image: AssetImage('images/126244.jpg'),
-            width: ScreenUtil().setWidth(375),
-            height: ScreenUtil().setHeight(280),
-            fit: BoxFit.fitWidth,
+          Positioned(
+            top: 0,
+            child: Image(
+              image: AssetImage('images/126244.jpg'),
+              width: ScreenUtil().setWidth(375),
+            ),
           ),
-          Expanded(
+          Positioned.fill(
+            top: ScreenUtil().setHeight(280),
             child: ListView(
               children: <Widget>[
-                ListTile(
-                  title: Text('悠扬小Q'),
-                  subtitle: Text('昵称：悠扬小Q'),
+                Card(
+                  // elevation: 0,
+                  shape: RoundedRectangleBorder(),
+                  child: Column(
+                    children: <Widget>[
+                      ListTile(
+                        title: Text('悠扬小Q'),
+                        subtitle: Text('昵称：悠扬小Q'),
+                      ),
+                      Divider(height: 1,),
+                      ListTile(
+                        title: Text('EA888'),
+                        subtitle: Text('ID'),
+                      ),
+                      Divider(height: 1,),
+                    ],
+                  ),
                 ),
-                Divider(height: 1,),
+                Card(
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(),
+                  child: Column(
+                    children: <Widget>[
+                      ListTile(
+                        title: Text('程序员'),
+                        subtitle: Text('标签'),
+                      ),
+                      Divider(height: 1,),
+                      ListTile(
+                        title: Text('悠扬小Q'),
+                        subtitle: Text('昵称：悠扬小Q'),
+                      ),
+                      Divider(height: 1,),
+                      ListTile(
+                        title: Text('悠扬小Q'),
+                        subtitle: Text('昵称：悠扬小Q'),
+                      ),
+                      Divider(height: 1,),
+                      ListTile(
+                        title: Text('悠扬小Q'),
+                        subtitle: Text('昵称：悠扬小Q'),
+                      ),
+                      Divider(height: 1,),
+                    ],
+                  ),
+                )
               ],
             ),
-          )
+          ),
         ],
       ),
     );
